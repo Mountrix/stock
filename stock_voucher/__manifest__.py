@@ -37,6 +37,7 @@
         'security/stock_voucher_security.xml',
         'security/ir.model.access.csv',
         'wizards/stock_print_stock_voucher_views.xml',
+        # stock_picking_wizard_views.xml must be loaded after models are initialized
         'wizards/stock_picking_wizard_views.xml',
         'views/stock_book_views.xml',
         'views/stock_picking_voucher_views.xml',

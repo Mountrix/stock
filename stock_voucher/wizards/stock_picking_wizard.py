@@ -5,8 +5,8 @@ from odoo.exceptions import UserError
 class StockPickingZpl(models.TransientModel):
     _inherit = 'product.label.layout'
 
-    picking_id = fields.Many2one('stock.picking',string='picking')
-    line_ids = fields.One2many('stock.picking.zpl.lines','picking_zpl_id', string='Moves')
+    picking_id = fields.Many2one('stock.picking', string='Picking')
+    line_ids = fields.One2many('stock.picking.zpl.lines', 'picking_zpl_id', string='Moves')
     
     @api.model
     def default_get(self, default_fields):

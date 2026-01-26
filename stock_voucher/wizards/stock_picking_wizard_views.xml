@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- 
+        Vista primaria para stock.picking - no hereda de product.product_label_layout_form
+        porque esa vista referencia product_id que no existe en el modelo base.
+        Esta vista se usa cuando se abre desde stock.picking.
+    -->
     <record id="view_picking_zpl_nuevo" model="ir.ui.view">
         <field name="model">product.label.layout</field>
-        <field name="inherit_id" ref="product.product_label_layout_form"/>
         <field name="name">stock.picking.zpl.nuevo</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority">99</field>
+        <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <xpath expr="//group" position="before">
-                <!-- Estructura con dos columnas -->
-                <div class="oe_structure"/>
+            <form string="Imprimir Etiquetas">
                 <group invisible="context.get('active_model') != 'stock.picking'">
                     <field name="picking_id" string="Transferencia" readonly="1" invisible="1"/>
                     <field name="line_ids" widget="one2many_list" nolabel="1" colspan="2">
@@ -24,11 +29,10 @@
                     -
                     <button name="action_print_pdf" type="object" string="Etiqueta de despacho(PDF)" class="btn btn-primary" style="font-size: 10px;" help="Imprimirá tantas como se indique en el número de paquetes"/>
                 </div>
-
-
-
-                <br invisible="context.get('active_model') != 'stock.picking'"/>
-            </xpath>
+                <footer>
+                    <button string="Cerrar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
         </field>
     </record>
 
